@@ -5,7 +5,7 @@
   <img align="right" width="30%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
 </div>
 <!--Header Name-->
-<h1 id="imtzdev"><img src="https://emojis.slackmojis.com/emojis/images/1643514596/5999/meow_party.gif?1643514596" width="30">ɪ'ᴍ ᴛᴢ ᴅᴇᴠ</h1>
+<b id="imtzdev"><img src="https://emojis.slackmojis.com/emojis/images/1643514596/5999/meow_party.gif?1643514596" width="25"> ɪ'ᴍ ᴛᴢ ᴅᴇᴠ</b>
 <p><em>Developer / Graphic Designer</em>
 <br></p>
 <!--Start Intro-->               
