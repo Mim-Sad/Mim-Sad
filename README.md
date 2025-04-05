@@ -24,7 +24,7 @@
 <!-- <p align="left">
   <img src="https://komarev.com/ghpvc/?username=Mim-Sad&amp;label=Profile views&amp;color=770677&amp;style=for-the-badge&amp;logo=star" alt="Mim-Sad" style="padding-right:20px;">
 </p> -->
-<hr>
+<!-- <hr> -->
 <br>
 <!--Languages and Tools Section-->       
 <h2 align="center">Lᴀɴɢᴜᴀɢᴇs ᴀɴᴅ Tᴏᴏʟs</h2> 
@@ -67,7 +67,7 @@
 <div align="center">
     <img src="https://github-readme-activity-graph.vercel.app/graph?username=Mim-Sad&amp;bg_color=011627&amp;color=79d3c3&amp;line=c792ea&amp;point=ffeb95&amp;area=true&amp;hide_border=false" border-radius="15">
 </div>
-<hr>
+<!-- <hr> -->
 <!--Dynamic Quote card updated everyday at 12 PM--> 
 <!-- <h2 align="center">🌟 Tʜᴏᴜɢʜᴛ ᴏғ ᴛʜᴇ Dᴀʏ 🌟</h2> -->
 <!--STARTS_HERE_QUOTE_CARD-->
@@ -95,6 +95,6 @@
 <!-- <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&amp;color=gradient&amp;height=65&amp;section=footer">
 </p> -->
-<hr>
+<!-- <hr> -->
 <p>Credit: <a href="https://github.com/Mim-Sad">Mim-Sad</a></p>
 <p>Last Edited on: 4/4/2025</p>
