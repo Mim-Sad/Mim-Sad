@@ -1,12 +1,12 @@
   <!--Banner-->
-<p><img src="https://github.com/Mim-Sad/Mim-Sad/blob/main/banner.png" alt="Mim-Sad Banner Image"></p>
+<!-- <p><img src="https://github.com/Mim-Sad/Mim-Sad/blob/main/banner.png" alt="Mim-Sad Banner Image"></p> -->
 <!--Night Owl image-->
 <div>
-  <img align="right" width="40%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
+  <img align="left" width="40%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
 </div>
 <!--Header Name-->
-<h1 id="-ɪᴍ-ᴋɪʀᴀɴ"><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"> ɪ’ᴍ ᴋɪʀᴀɴ!</h1>
-<p><em>Digital Craftsman (Developer / Programmer)</em>
+<h1 id="imtzdev"><img src="https://emojis.slackmojis.com/emojis/images/1643514596/5999/meow_party.gif?1643514596" width="30">ɪ'ᴍ ᴛᴢ ᴅᴇᴠ</h1>
+<p><em>Developer / Graphic Designer</em>
 <br></p>
 <!--Start Intro-->               
 <p align="left">I am a Full Stack Developer and Machine Learning Enthusiast with a huge love for Python, React.js, Node.js, Django, RDBMS, REST API and Data Visualization. </p>
@@ -21,15 +21,15 @@
 </ul>
 <!--End Intro-->
 <!--Profile Count Badge-->
-<p align="left">
+<!-- <p align="left">
   <img src="https://komarev.com/ghpvc/?username=Mim-Sad&amp;label=Profile views&amp;color=770677&amp;style=for-the-badge&amp;logo=star" alt="Mim-Sad" style="padding-right:20px;">
-</p>
+</p> -->
 <hr>
 <br>
 <!--Languages and Tools Section-->       
 <h2 align="center">Lᴀɴɢᴜᴀɢᴇs ᴀɴᴅ Tᴏᴏʟs</h2> 
 <p align="center">
-<img width="500px" src="https://skillicons.dev/icons?i=py,java,js,html,css,react,nodejs,express,django,md,solidity,postgres,mongo,git,vscode,docker,aws,postman,supabase,linux&amp;perline=10">
+<img width="500px" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/techs.png?raw=true">
 </p>
 <br>
 <!--Trophies Section-->   
@@ -69,14 +69,14 @@
 </div>
 <hr>
 <!--Dynamic Quote card updated everyday at 12 PM--> 
-<h2 align="center">🌟 Tʜᴏᴜɢʜᴛ ᴏғ ᴛʜᴇ Dᴀʏ 🌟</h2>
+<!-- <h2 align="center">🌟 Tʜᴏᴜɢʜᴛ ᴏғ ᴛʜᴇ Dᴀʏ 🌟</h2> -->
 <!--STARTS_HERE_QUOTE_CARD-->
-<p align="center">
+<!-- <p align="center">
     <img src="https://readme-daily-quotes.vercel.app/api?author=Yanni&amp;quote=Music is like creating an emotional painting. The sounds are the colors.&amp;theme=dark&amp;bg_color=011627&amp;author_color=ffeb95">
-</p>
+</p> -->
 <!--ENDS_HERE_QUOTE_CARD-->
 <!--Contact Section--> 
-<h2 align="center">🤝 Cᴏɴɴᴇᴄᴛ Wɪᴛʜ Mᴇ 🤝 </h2>
+<!-- <h2 align="center">🤝 Cᴏɴɴᴇᴄᴛ Wɪᴛʜ Mᴇ 🤝 </h2>
 <div align="center">
  <a href="https://www.linkedin.com/in/kiran-a-n/" target="_blank">
 <img src="https://img.shields.io/badge/linkedin-#1E77B5.svg?&amp;style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" alt="linkedin" style="margin-bottom: 5px;">
@@ -90,11 +90,11 @@
 <a href="https://twitter.com/kiran__a__n" target="_blank">
 <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&amp;logo=twitter&amp;logoColor=white" alt="kiran__a__n Twitter" style="margin-bottom: 5px;">
 </a>
-</div>
+</div> -->
 <!--Footer--> 
-<p align="center">
+<!-- <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&amp;color=gradient&amp;height=65&amp;section=footer">
-</p>
+</p> -->
 <hr>
 <p>Credit: <a href="https://github.com/Mim-Sad">Mim-Sad</a></p>
-<p>Last Edited on: 29/11/2023</p>
+<p>Last Edited on: 4/4/2025</p>
