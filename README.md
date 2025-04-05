@@ -13,9 +13,9 @@
 <ul>
 <li>✨ Student of life :)</li>
 <li>🌱 I’m currently learning many things, I believe that everyday is a learning opportunity.</li>
-<li>🏙 A lifetime insider and Mentor at <a href="https://exercism.org/profiles/Mim-Sad">Exercism</a>.</li>
+<li>🏙 A lifetime insider and Mentor.</li>
 <li>💁‍♂️ Volunteer MOD at <strong>Dev Community</strong>.</li>
-<li>✍ I write technical blogs, You can visit my blog site at <a href="https://dev.to/dev_kiran">DEV</a>.</li>
+<li>✍ I write technical blogs.</li>
 <li>❤ Contributing to Open Source.</li>
 <li>💻 Visit my <a href="https://Mim-Sad.github.io">Portfolio</a> for more details about me.</li>
 </ul>
