@@ -2,7 +2,7 @@
 <!-- <p><img src="https://github.com/Mim-Sad/Mim-Sad/blob/main/banner.png" alt="Mim-Sad Banner Image"></p> -->
 <!--Night Owl image-->
 <div>
-  <img align="left" width="40%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
+  <img align="right" width="30%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
 </div>
 <!--Header Name-->
 <h1 id="imtzdev"><img src="https://emojis.slackmojis.com/emojis/images/1643514596/5999/meow_party.gif?1643514596" width="30">ɪ'ᴍ ᴛᴢ ᴅᴇᴠ</h1>
