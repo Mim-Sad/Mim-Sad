@@ -2,7 +2,7 @@
 <!-- <p><img src="https://github.com/Mim-Sad/Mim-Sad/blob/main/banner.png" alt="Mim-Sad Banner Image"></p> -->
 <!--Night Owl image-->
 <div>
-  <img align="right" width="30%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
+  <img align="right" width="28%" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/me-asf-min.png?raw=true">
 </div>
 <!--Header Name-->
 <b id="imtzdev"><img src="https://emojis.slackmojis.com/emojis/images/1643514596/5999/meow_party.gif?1643514596" width="25"> ɪ'ᴍ ᴛᴢ ᴅᴇᴠ</b>
@@ -27,7 +27,7 @@
 <!-- <hr> -->
 <br>
 <!--Languages and Tools Section-->       
-<h2 align="center">Lᴀɴɢᴜᴀɢᴇs ᴀɴᴅ Tᴏᴏʟs</h2> 
+<h2 align="center">🎓 Lᴀɴɢᴜᴀɢᴇs ᴀɴᴅ Tᴏᴏʟs 🎓</h2> 
 <p align="center">
 <img width="500px" src="https://github.com/Mim-Sad/Mim-Sad/blob/main/techs.png?raw=true">
 </p>
