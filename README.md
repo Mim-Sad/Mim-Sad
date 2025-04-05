@@ -53,24 +53,6 @@
       </p>
     </td>
     <td width="50%">
-      <h3 align="center"><strong>Sᴛʀᴇᴀᴋ Sᴛᴀᴛs</strong></h3>
-      <p align="center">
-        <a href="https://github.com/Mim-Sad">
-          <img align="center" src="https://streak-stats.demolab.com?user=Mim-Sad&amp;theme=nightowl" alt="Streak Stats">
-        </a>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3 align="center"><strong>Lᴀᴛᴇsᴛ Pʀᴏᴊᴇᴄᴛ</strong></h3>
-      <p align="center">
-        <a href="https://github.com/Mim-Sad/cryptos">
-          <img align="center" width="470" src="https://github-readme-stats.vercel.app/api/pin/?username=Mim-Sad&amp;repo=cryptos&amp;theme=nightowl&amp;show_owner=true" alt="Cryptos Project">
-        </a>
-      </p>
-    </td>
-    <td width="50%">
       <h3 align="center"><strong>Tᴏᴘ Cᴏɴᴛʀɪʙᴜᴛɪᴏɴs</strong></h3>
       <p align="center">
         <a href="https://github.com/Mim-Sad">
@@ -78,7 +60,6 @@
         </a>
       </p>
     </td>
-  </tr>
 </tbody></table>
 <br>
 <!--Contribution Graph-->
