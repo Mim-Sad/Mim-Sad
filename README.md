@@ -9,7 +9,7 @@
 <p><em>Developer / Graphic Designer</em>
 <br></p>
 <!--Start Intro-->               
-<p align="left">I am a Full Stack Developer and Machine Learning Enthusiast with a huge love for Python, React.js, Node.js, Django, RDBMS, REST API and Data Visualization. </p>
+<p align="left">I am a senior full-stack programmer and graphic designer, currently focused on Ai and believe in making revolutionary moves in technology.</p>
 <ul>
 
 
