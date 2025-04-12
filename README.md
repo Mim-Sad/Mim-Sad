@@ -11,13 +11,16 @@
 <!--Start Intro-->               
 <p align="left">I am a Full Stack Developer and Machine Learning Enthusiast with a huge love for Python, React.js, Node.js, Django, RDBMS, REST API and Data Visualization. </p>
 <ul>
-<li>✨ Student of life :)</li>
-<li>🌱 I’m currently learning many things, I believe that everyday is a learning opportunity.</li>
-<li>🏙 A lifetime insider and Mentor.</li>
-<li>💁‍♂️ Volunteer MOD at <strong>Dev Community</strong>.</li>
-<li>✍ I write technical blogs.</li>
-<li>❤ Contributing to Open Source.</li>
-<li>💻 Visit my <a href="https://Mim-Sad.github.io">Portfolio</a> for more details about me.</li>
+
+
+
+<li>🌱 Always a student</li>
+<li>🌊 Programmer immersed in code</li>
+<li>🕯️ Lover of the 3am IDE black screen</li>
+<li>👨🏻‍🏫 Committed to teaching</li>
+<li>✍🏻 Technology writer</li>
+<li>❤ Contributing to Open Source</li>
+<li>💻 Addicted to random coding</li>
 </ul>
 <!--End Intro-->
 <!--Profile Count Badge-->
