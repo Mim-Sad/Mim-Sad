@@ -36,13 +36,13 @@
 </p>
 <br>
 <!--Trophies Section-->   
-<h2 align="center">🏆 Gɪᴛʜᴜʙ Tʀᴏᴘʜɪᴇs 🏆</h2>
+<!-- <h2 align="center">🏆 Gɪᴛʜᴜʙ Tʀᴏᴘʜɪᴇs 🏆</h2>
 <p align="center">
   <a href="https://github.com/Mim-Sad/github-profile-trophy">
     <img src="https://github-profile-trophy.vercel.app/?username=Mim-Sad&amp;row=2&amp;column=6&amp;margin-w=20&amp;margin-h=20" alt="GitHub Trophies">
   </a>
 </p>
-<br>
+<br> -->
 <!--Github stats Table--> 
 <h2 align="center">📊 Gɪᴛʜᴜʙ Sᴛᴀᴛs 📊</h2>
 <table width="100%">
