@@ -42,8 +42,8 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           github_token: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
           outputs: |
-            assets/snake.svg?color_snake=#7fdbca
-            assets/snake-dark.svg?palette=github-dark&color_snake=#7fdbca
+            assets/snake.svg?color_snake=#0d9488&color_dots=#ebedf0,#b8ecdf,#5fd3bb,#14a38c,#0b6e60
+            assets/snake-dark.svg?palette=github-dark&color_snake=#5eead4&color_dots=#161b22,#0f4a43,#13806f,#2fbfa3,#7ff0d6
 
       - name: Commit changes
         run: |

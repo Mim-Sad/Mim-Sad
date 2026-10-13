@@ -37,8 +37,8 @@ class RenderTests(unittest.TestCase):
     def test_all_svgs_are_well_formed(self):
         pc.build_static()
         pc.build_dynamic(pc.mock_data())
-        files = list(pc.ASSETS.glob("*.svg"))
-        self.assertGreaterEqual(len(files), 8)
+        files = list(pc.OUT.glob("*.svg"))
+        self.assertEqual(len(files), 2 * (3 + len(pc.CARDS)))
         for f in files:
             minidom.parse(str(f))
 
@@ -51,7 +51,17 @@ class RenderTests(unittest.TestCase):
     def test_language_names_are_escaped(self):
         data = pc.mock_data()
         data["langs"]["<script>"] = {"size": 10, "color": "#fff"}
-        self.assertNotIn("<script>", pc.languages_card(data))
+        self.assertNotIn("<script>", pc.languages_card(data, pc.THEMES["dark"]))
+
+    def test_toolkit_pills_stay_inside_card(self):
+        import re
+        for key in pc.TOOLKIT:
+            svg, _ = pc.toolkit_card(key, pc.THEMES["light"])
+            for x, w in re.findall(r'<rect x="([\d.]+)" y="[\d.]+" width="([\d.]+)" height="28"', svg):
+                self.assertLessEqual(float(x) + float(w), pc.X1 + 0.5)
+
+    def test_icon_contrast_fallback(self):
+        self.assertLess(pc.contrast("#FFFFFF", pc.THEMES["light"]["chip"]), 2.2)
 
     def test_fmt(self):
         self.assertEqual(pc.fmt(999), "999")

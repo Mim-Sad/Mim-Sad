@@ -1,56 +1,40 @@
 <div align="center">
-
-<img src="assets/hero.svg" alt="Mohammad Sadegh Taghizadeh — full-stack developer and graphic designer" width="640">
-
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img src="assets/hero-light.svg" alt="Mohammad Sadegh Taghizadeh — full-stack developer & graphic designer" width="784"></picture>
 </div>
 
 <br>
 
-## `~/about`
+<p align="center">
+Senior full-stack developer and graphic designer, currently deep in <b>AI</b>.<br>
+I like building things that feel inevitable once they exist — and making them look good while I'm at it.
+</p>
 
-Senior full-stack developer and graphic designer, currently deep in **AI** and convinced the next big shift in tech is still ahead of us.
-
-- 🌱 Always a student — learning is the default state
-- 🕯️ Most at home in a black IDE at 3 AM
-- 👨🏻‍🏫 Teaching what I learn, writing about tech
-- ❤️ Open source contributor
-- 🧪 Random side projects are a lifestyle, not a phase
+<p align="center">
+<sub>ALWAYS A STUDENT &nbsp;·&nbsp; 3 AM IN A DARK IDE &nbsp;·&nbsp; TEACHER &amp; TECH WRITER &nbsp;·&nbsp; OPEN SOURCE &nbsp;·&nbsp; CHRONIC SIDE-PROJECTER</sub>
+</p>
 
 <br>
 
-## `~/stack`
-
 <div align="center">
-  <img src="assets/stack.svg" alt="Python, JavaScript, C#, C++, Java, HTML5, CSS3, React, Node.js, MongoDB, Git, Linux, Unity, Unreal Engine, Colab, Photoshop, Illustrator, After Effects" width="480">
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-code-dark.svg"><img src="assets/toolkit-code-light.svg" alt="Code: Python, JavaScript, C#, C++, Java, React, Node.js, HTML5, CSS3, MongoDB, Colab" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-create-dark.svg"><img src="assets/toolkit-create-light.svg" alt="Create: Unity, Unreal, Photoshop, Illustrator, After Effects, Git, Linux" width="390"></picture>
 </div>
 
-<br>
-
-## `~/stats`
-
 <div align="center">
-  <img src="assets/stats.svg" alt="GitHub stats" width="400">
-  <img src="assets/streak.svg" alt="Contribution streak" width="400">
-  <img src="assets/languages.svg" alt="Top languages" width="400">
-  <img src="assets/weekly.svg" alt="Contributions by weekday" width="400">
-  <img src="assets/activity.svg" alt="Contribution activity, last 30 days" width="400">
-  <img src="assets/monthly.svg" alt="Contributions by month" width="400">
-</div>
-
-<br>
-
-## `~/snake`
-
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/snake-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/snake.svg">
-    <img alt="Contribution snake eating my commit graph" src="assets/snake-dark.svg" width="830">
-  </picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/overview-dark.svg"><img src="assets/overview-light.svg" alt="GitHub overview: commits, pull requests, issues, stars, followers, repositories" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/streak-dark.svg"><img src="assets/streak-light.svg" alt="Contribution streak" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg"><img src="assets/activity-light.svg" alt="Contributions over the last 30 days" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/languages-dark.svg"><img src="assets/languages-light.svg" alt="Top languages by code size" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/weekly-dark.svg"><img src="assets/weekly-light.svg" alt="Contributions by weekday" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/monthly-dark.svg"><img src="assets/monthly-light.svg" alt="Contributions over the past 12 months" width="390"></picture>
 </div>
 
 <br>
 
 <div align="center">
-  <sub>Every widget here is generated from scratch by <a href="scripts/profile_cards.py">one small Python script</a> and refreshed daily by GitHub Actions — no third-party image services.</sub>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/snake-dark.svg"><img src="assets/snake.svg" alt="A snake eating my contribution graph" width="784"></picture>
 </div>
+
+<br>
+
+<p align="center"><sub>Every widget above is drawn by <a href="scripts/profile_cards.py">one small Python script</a> and refreshed daily by GitHub Actions.</sub></p>
