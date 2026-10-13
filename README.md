@@ -1,23 +1,26 @@
 <div align="center">
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img src="assets/hero-light.svg" alt="Mohammad Sadegh Taghizadeh — full-stack developer & graphic designer" width="784"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg"><img src="assets/hero-light.svg" alt="Mohammad Sadegh Taghizadeh, full-stack developer and graphic designer" width="784"></picture>
 </div>
 
 <br>
 
 <p align="center">
-Senior full-stack developer and graphic designer, currently deep in <b>AI</b>.<br>
-I like building things that feel inevitable once they exist — and making them look good while I'm at it.
+🧑‍💻 <b>Senior full-stack developer</b> &amp; 🎨 <b>graphic designer</b><br>
+🤖 Deep into AI: LLMs, agents &amp; RAG<br>
+✨ I build things that run well and look even better
 </p>
 
 <p align="center">
-<sub>ALWAYS A STUDENT &nbsp;·&nbsp; 3 AM IN A DARK IDE &nbsp;·&nbsp; TEACHER &amp; TECH WRITER &nbsp;·&nbsp; OPEN SOURCE &nbsp;·&nbsp; CHRONIC SIDE-PROJECTER</sub>
+🌱 Always learning &nbsp;·&nbsp; 👨‍🏫 Teaching &amp; writing &nbsp;·&nbsp; ❤️ Open source
 </p>
 
 <br>
 
 <div align="center">
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-code-dark.svg"><img src="assets/toolkit-code-light.svg" alt="Code: Python, JavaScript, C#, C++, Java, React, Node.js, HTML5, CSS3, MongoDB, Colab" width="390"></picture>
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-create-dark.svg"><img src="assets/toolkit-create-light.svg" alt="Create: Unity, Unreal, Photoshop, Illustrator, After Effects, Git, Linux" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-languages-dark.svg"><img src="assets/toolkit-languages-light.svg" alt="Languages: Python, TypeScript, JavaScript, PHP, Dart, SQL, C#, C++, Java" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-apps-dark.svg"><img src="assets/toolkit-apps-light.svg" alt="Apps and engines: Flutter, React, Node.js, WordPress, HTML5, CSS3, Unity, Unreal" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-ai-dark.svg"><img src="assets/toolkit-ai-light.svg" alt="AI and data: LLMs, agents, RAG, ML, deep learning, RL, SQLite, MongoDB, Colab" width="390"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/toolkit-ops-dark.svg"><img src="assets/toolkit-ops-light.svg" alt="Cloud and design: cloud computing, DevOps, Docker, Git, Linux, Photoshop, Illustrator, After Effects" width="390"></picture>
 </div>
 
 <div align="center">
@@ -34,7 +37,3 @@ I like building things that feel inevitable once they exist — and making them 
 <div align="center">
 <picture><source media="(prefers-color-scheme: dark)" srcset="assets/snake-dark.svg"><img src="assets/snake.svg" alt="A snake eating my contribution graph" width="784"></picture>
 </div>
-
-<br>
-
-<p align="center"><sub>Every widget above is drawn by <a href="scripts/profile_cards.py">one small Python script</a> and refreshed daily by GitHub Actions.</sub></p>

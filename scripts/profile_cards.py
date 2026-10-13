@@ -237,6 +237,25 @@ def doc(w: int, h: int, body: str, title: str, defs: str = "", fonts=("inter-400
     style = font_css(*fonts) + (
         "text{font-family:" + SANS + ";font-feature-settings:'tnum','cv11'}"
         ".mono{font-family:" + MONO + "}"
+        # Elements are visible by default; `both` fill only hides them during their delay,
+        # so renderers that skip animation still show the finished card.
+        ".a{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}"
+        "@keyframes rise{from{opacity:0;transform:translateY(10px)}}"
+        ".fade{animation:fade .8s ease both;animation-delay:var(--d,0s)}"
+        "@keyframes fade{from{opacity:0}}"
+        ".grow{transform-box:fill-box;transform-origin:50% 100%;"
+        "animation:grow .9s cubic-bezier(.2,.9,.25,1.05) both;animation-delay:var(--d,0s)}"
+        "@keyframes grow{from{transform:scaleY(0)}}"
+        ".sweep{transform-box:fill-box;transform-origin:0 50%;"
+        "animation:sweep .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}"
+        "@keyframes sweep{from{transform:scaleX(0)}}"
+        ".pop{transform-box:fill-box;transform-origin:50% 50%;"
+        "animation:pop .55s cubic-bezier(.3,1.5,.5,1) both;animation-delay:var(--d,0s)}"
+        "@keyframes pop{from{opacity:0;transform:scale(.55)}}"
+        ".draw{stroke-dasharray:1;animation:draw 1.6s cubic-bezier(.4,.1,.2,1) .25s both}"
+        "@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}"
+        ".beat{transform-box:fill-box;transform-origin:50% 50%;animation:beat 2.6s ease-out 2s infinite}"
+        "@keyframes beat{0%{transform:scale(1);opacity:.5}70%,100%{transform:scale(2.4);opacity:0}}"
         "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
     )
     return (
@@ -244,6 +263,10 @@ def doc(w: int, h: int, body: str, title: str, defs: str = "", fonts=("inter-400
         f'role="img" aria-label="{escape(title)}">\n<title>{escape(title)}</title>\n'
         f"<defs><style>{style}</style>{defs}</defs>\n{body}\n</svg>\n"
     )
+
+
+def dly(i: float, base: float = .1, step: float = .06) -> str:
+    return f' style="--d:{base + i * step:.2f}s"'
 
 
 def label(x, y, s, t, size=11.5, anchor="start", color=None, weight=400, spacing=0):
@@ -265,10 +288,10 @@ def frame(t: dict, w: int, h: int, rx: int = 12) -> str:
 def card(t: dict, title: str, meta: str, inner: str, h: int = H, defs: str = "",
          fonts=("inter-400", "inter-600")) -> str:
     body = (
-        frame(t, W, h) + '<g>'
-        + label(X0, M + 33, title, t, 13, color=t["text"], weight=600)
-        + (label(X1, M + 33, meta, t, 11.5, "end") if meta else "")
-        + inner + "</g>"
+        frame(t, W, h)
+        + f'<g class="a"{dly(0, .05)}>' + label(X0, M + 33, title, t, 13, color=t["text"], weight=600)
+        + (label(X1, M + 33, meta, t, 11.5, "end") if meta else "") + "</g>"
+        + inner
     )
     return doc(W, h, body, title, defs, fonts)
 
@@ -285,7 +308,7 @@ def overview_card(d: dict, t: dict) -> str:
     out = [f'<line x1="{X0}" x2="{X1}" y1="124.5" y2="124.5" stroke="{t["grid"]}"/>']
     for i, (name, n) in enumerate(items):
         x, y = X0 + (i % 3) * col, 88 + (i // 3) * 64
-        out.append(value(x, y, fmt(n), t) + label(x, y + 19, name, t))
+        out.append(f'<g class="a"{dly(i, .15, .08)}>' + value(x, y, fmt(n), t) + label(x, y + 19, name, t) + "</g>")
     return card(t, "Overview", f"@{d['login']}", "".join(out))
 
 
@@ -294,21 +317,23 @@ def streak_card(d: dict, t: dict) -> str:
     recent = d["days"][-14:]
     peak = max(x["count"] for x in d["days"]) or 1
     out = [
+        f'<g class="a"{dly(0, .15)}>',
         value(X0, 98, str(cur), t, 40).replace(
             "</text>", f'<tspan dx="6" font-size="13" font-weight="400" letter-spacing="0" '
                        f'fill="{t["muted"]}">{"day" if cur == 1 else "days"}</tspan></text>'),
         label(X0, 119, "Current streak", t),
+        "</g>",
     ]
     rx = M + 222
     out += [f'<line x1="{rx - 22.5}" x2="{rx - 22.5}" y1="62" y2="150" stroke="{t["grid"]}"/>',
-            value(rx, 82, f"{longest} days", t, 17), label(rx, 100, "Longest streak", t),
-            value(rx, 132, fmt(d["total"]), t, 17), label(rx, 150, "Contributions · 1y", t)]
+            f'<g class="a"{dly(0, .3)}>', value(rx, 82, f"{longest} days", t, 17), label(rx, 100, "Longest streak", t), "</g>",
+            f'<g class="a"{dly(0, .42)}>', value(rx, 132, fmt(d["total"]), t, 17), label(rx, 150, "Contributions · 1y", t), "</g>"]
     gap = 4
     size = (rx - 46 - X0 - gap * 13) / 14
     for i, x in enumerate(recent):
-        out.append(f'<rect x="{X0 + i * (size + gap):.1f}" y="136" width="{size:.1f}" height="{size:.1f}" '
-                   f'rx="2" fill="{t["levels"][level(x["count"], peak)]}"/>')
-    out.append(label(X0, 168, "Last 14 days", t, 10.5, color=t["faint"]))
+        out.append(f'<rect class="pop"{dly(i, .45, .04)} x="{X0 + i * (size + gap):.1f}" y="136" '
+                   f'width="{size:.1f}" height="{size:.1f}" rx="2" fill="{t["levels"][level(x["count"], peak)]}"/>')
+    out.append(f'<g class="fade"{dly(0, 1.0)}>' + label(X0, 168, "Last 14 days", t, 10.5, color=t["faint"]) + "</g>")
     return card(t, "Streak", "", "".join(out))
 
 
@@ -323,9 +348,10 @@ def languages_card(d: dict, t: dict) -> str:
     width, gap, x = X1 - X0, 2, float(X0)
     defs = f'<clipPath id="bar"><rect x="{X0}" y="60" width="{width}" height="8" rx="4"/></clipPath>'
     bar = [f'<g clip-path="url(#bar)"><rect x="{X0}" y="60" width="{width}" height="8" fill="{t["grid"]}"/>']
-    for _, size, color in rows:
+    for i, (_, size, color) in enumerate(rows):
         w = size / total * width
-        bar.append(f'<rect x="{x:.1f}" y="60" width="{max(w - gap, .5):.1f}" height="8" fill="{color}"/>')
+        bar.append(f'<rect class="sweep"{dly(i, .15, .08)} x="{x:.1f}" y="60" width="{max(w - gap, .5):.1f}" '
+                   f'height="8" fill="{color}"/>')
         x += w
     bar.append("</g>")
 
@@ -333,9 +359,9 @@ def languages_card(d: dict, t: dict) -> str:
     for i, (name, size, color) in enumerate(rows):
         cx, cy = X0 + (i % 2) * (colw + 28), 104 + (i // 2) * 28
         legend.append(
-            f'<circle cx="{cx + 4}" cy="{cy - 4}" r="4" fill="{color}"/>'
+            f'<g class="a"{dly(i, .3, .07)}><circle cx="{cx + 4}" cy="{cy - 4}" r="4" fill="{color}"/>'
             + label(cx + 16, cy, name, t, 12.5, color=t["text"])
-            + label(cx + colw, cy, f"{size / total * 100:.1f}%", t, 12, "end")
+            + label(cx + colw, cy, f"{size / total * 100:.1f}%", t, 12, "end") + "</g>"
         )
     if not rows:
         legend.append(label(X0, 110, "No language data yet", t, 12))
@@ -353,10 +379,10 @@ def bar_chart(t: dict, values: list[int], names: list[str], bw: float) -> tuple[
         x = X0 + i * step
         hot = i == best and v > 0
         out.append(
-            f'<rect x="{x:.1f}" y="{base - hgt:.1f}" width="{bw}" height="{hgt:.1f}" rx="{min(bw / 2, 4)}" '
+            f'<rect class="grow"{dly(i, .1, .05)} x="{x:.1f}" y="{base - hgt:.1f}" width="{bw}" height="{hgt:.1f}" rx="{min(bw / 2, 4)}" '
             f'fill="{t["accent"]}" fill-opacity="{1 if hot else .26}"/>'
-            + label(x + bw / 2, base + 22, names[i], t, 11, "middle",
-                    color=t["text"] if hot else t["faint"], weight=600 if hot else 400)
+            + f'<g class="fade"{dly(i, .3, .05)}>' + label(x + bw / 2, base + 22, names[i], t, 11, "middle",
+                    color=t["text"] if hot else t["faint"], weight=600 if hot else 400) + "</g>"
         )
     return "".join(out), best
 
@@ -406,12 +432,12 @@ def activity_card(d: dict, t: dict, span: int = 30) -> str:
                     for i, a in ((0, "start"), (span // 2, "middle"), (span - 1, "end")))
     ex, ey = pts[-1]
     inner = (
-        grid + f'<path d="{area}" fill="url(#fill)"/>'
-        f'<path d="{line}" fill="none" stroke="{t["accent"]}" stroke-width="2" '
+        grid + f'<path class="fade"{dly(0, .9)} d="{area}" fill="url(#fill)"/>'
+        f'<path class="draw" pathLength="1" d="{line}" fill="none" stroke="{t["accent"]}" stroke-width="2" '
         f'stroke-linejoin="round" stroke-linecap="round"/>'
-        f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="7" fill="{t["accent"]}" fill-opacity=".18"/>'
-        f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="3" fill="{t["accent"]}"/>'
-        + ticks
+        f'<circle class="beat" cx="{ex:.1f}" cy="{ey:.1f}" r="4" fill="{t["accent"]}"/>'
+        f'<circle class="pop"{dly(0, 1.7)} cx="{ex:.1f}" cy="{ey:.1f}" r="3.2" fill="{t["accent"]}"/>'
+        + f'<g class="fade"{dly(0, .4)}>' + ticks + "</g>"
     )
     total = sum(x["count"] for x in days)
     return card(t, "Last 30 days", f"{fmt(total)} contributions", inner, defs=defs)
@@ -421,15 +447,21 @@ def activity_card(d: dict, t: dict, span: int = 30) -> str:
 # toolkit
 # --------------------------------------------------------------------------
 TOOLKIT = {
-    "code": ("Toolkit · Code", [
-        ("Languages", ["Python", "JavaScript", "C#", "C++", "Java"]),
-        ("Web", ["React", "Node.js", "HTML5", "CSS3"]),
-        ("Data & AI", ["MongoDB", "Colab"]),
+    "languages": ("Languages", [
+        ("Core", ["Python", "TypeScript", "JavaScript", "PHP", "Dart", "SQL"]),
+        ("Systems & enterprise", ["C#", "C++", "Java"]),
     ]),
-    "create": ("Toolkit · Create", [
+    "apps": ("Apps & Engines", [
+        ("Web & mobile", ["Flutter", "React", "Node.js", "WordPress", "HTML5", "CSS3"]),
         ("Game engines", ["Unity", "Unreal"]),
+    ]),
+    "ai": ("AI & Data", [
+        ("Machine intelligence", ["LLMs", "Agents", "RAG", "ML", "Deep Learning", "RL"]),
+        ("Data", ["SQLite", "MongoDB", "Colab"]),
+    ]),
+    "ops": ("Cloud & Design", [
+        ("Infrastructure", ["Cloud Computing", "DevOps", "Docker", "Git", "Linux"]),
         ("Design & motion", ["Photoshop", "Illustrator", "After Effects"]),
-        ("Everyday", ["Git", "Linux"]),
     ]),
 }
 
@@ -449,9 +481,10 @@ def toolkit_card(key: str, t: dict, height: int | None = None) -> tuple[str, int
     """Groups of icon pills, flowed into rows. Returns (svg, natural height)."""
     icons = json.loads((ROOT / "scripts" / "icons.json").read_text())
     title, groups = TOOLKIT[key]
-    out, y, ph, gap = [], M + 64, 28, 7
+    out, y, ph, gap, n = [], M + 64, 28, 7, 0
     for gname, items in groups:
-        out.append(label(X0, y, gname.upper(), t, 10, color=t["faint"], weight=600, spacing=.8))
+        out.append(f'<g class="fade"{dly(n, .1, .03)}>'
+                   + label(X0, y, gname.upper(), t, 10, color=t["faint"], weight=600, spacing=.8) + "</g>")
         y += 11
         x = X0
         for name in items:
@@ -459,14 +492,21 @@ def toolkit_card(key: str, t: dict, height: int | None = None) -> tuple[str, int
             w = 10 + (16 + 7 if icon or name == "C#" else 0) + text_width(name, 12.5, "inter-500") + 11
             if x + w > X1:
                 x, y = X0, y + ph + gap
-            out.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{ph}" rx="8" '
+            out.append(f'<g class="pop"{dly(n, .15, .045)}>'
+                       f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{ph}" rx="8" '
                        f'fill="{t["chip"]}" stroke="{t["edge"]}"/>')
+            n += 1
             tx = x + 10
             if name == "C#":  # not in simple-icons any more: hexagon mark
                 out.append(f'<g transform="translate({tx + 8:.1f} {y + 14:.1f})">'
                            '<path d="M0-8 6.93-4V4L0 8-6.93 4V-4Z" fill="#7B3FB0"/>'
                            '<text y="2.6" font-size="7" font-weight="600" fill="#fff" '
                            'text-anchor="middle">C#</text></g>')
+                tx += 23
+            elif icon and "stroke" in icon:  # line icon (Lucide, ISC), tinted with the accent
+                out.append(f'<g transform="translate({tx:.1f} {y + 6:.1f}) scale(.6667)" fill="none" '
+                           f'stroke="{t["accent"]}" stroke-width="2.2" stroke-linecap="round" '
+                           f'stroke-linejoin="round">{icon["stroke"]}</g>')
                 tx += 23
             elif icon:
                 color = "#" + icon["color"]
@@ -476,13 +516,13 @@ def toolkit_card(key: str, t: dict, height: int | None = None) -> tuple[str, int
                            f'd="{icon["d"]}" fill="{color}"/>')
                 tx += 23
             out.append(f'<text x="{tx:.1f}" y="{y + 18.5:.1f}" font-size="12.5" font-weight="500" '
-                       f'fill="{t["text"]}">{escape(name)}</text>')
+                       f'fill="{t["text"]}">{escape(name)}</text></g>')
             x += w + gap
         y += ph + 28
     natural = int(y - 28 + PAD + M)
     h = height or natural
-    body = (frame(t, W, h) + '<g>'
-            + label(X0, M + 33, title, t, 13, color=t["text"], weight=600) + "".join(out) + "</g>")
+    body = (frame(t, W, h) + f'<g class="a"{dly(0, .05)}>'
+            + label(X0, M + 33, title, t, 13, color=t["text"], weight=600) + "</g>" + "".join(out))
     return doc(W, h, body, title, fonts=("inter-400", "inter-500", "inter-600")), natural
 
 
@@ -512,6 +552,14 @@ def hero(t: dict, theme: str) -> str:
         f'<stop offset="1" stop-color="{t["accent2"]}"/></linearGradient>'
         "<style>"
         ".cur{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}"
+        ".orbit{transform-box:fill-box;transform-origin:50% 50%;animation:spin 90s linear infinite}"
+        "@keyframes spin{to{transform:rotate(360deg)}}"
+        ".glow{animation:breathe 7s ease-in-out infinite}"
+        "@keyframes breathe{50%{opacity:.55}}"
+        ".av{animation:avatar 1s cubic-bezier(.2,.8,.2,1) .15s both}"
+        "@keyframes avatar{from{opacity:0;transform:translateY(28px) scale(.97)}}"
+        ".slide{animation:slide .8s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}"
+        "@keyframes slide{from{opacity:0;transform:translateX(-18px)}}"
         ".ping{transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}"
         "@keyframes ping{0%{transform:scale(1);opacity:.55}80%,100%{transform:scale(2.6);opacity:0}}"
         "</style>"
@@ -523,25 +571,24 @@ def hero(t: dict, theme: str) -> str:
     body = f"""{frame(t, w, h, 16)}
 <g clip-path="url(#c)">
   <rect width="{w}" height="{h}" fill="url(#dots)" mask="url(#m)"/>
-  <rect width="{w}" height="{h}" fill="url(#glow)"/>
+  <rect class="glow" width="{w}" height="{h}" fill="url(#glow)"/>
   <circle cx="{gx:.1f}" cy="{cy}" r="116" fill="none" stroke="{t["edge"]}"/>
-  <circle cx="{gx:.1f}" cy="{cy}" r="160" fill="none" stroke="{t["edge"]}" stroke-opacity=".5"/>
-  <image href="data:image/webp;base64,{avatar}" x="{ax:.1f}" y="{h - M - ah + 4}" width="{aw:.1f}" height="{ah}"/>
+  <circle class="orbit" cx="{gx:.1f}" cy="{cy}" r="160" fill="none" stroke="{t["edge"]}" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <circle class="orbit" style="animation-direction:reverse;animation-duration:140s" cx="{gx:.1f}" cy="{cy}" r="200" fill="none" stroke="{t["edge"]}" stroke-opacity=".55" stroke-dasharray="1 11" stroke-linecap="round"/>
+  <image class="av" href="data:image/webp;base64,{avatar}" x="{ax:.1f}" y="{h - M - ah + 4}" width="{aw:.1f}" height="{ah}"/>
 </g>
 <rect x="{M + .5}" y="{M + .5}" width="{w - 2 * M - 1}" height="{h - 2 * M - 1}" rx="16" fill="none" stroke="{t["edge"]}"/>
-<g><text x="{x}" y="76" class="mono" font-size="13" fill="{t["faint"]}">~/mim-sad <tspan fill="{t["accent"]}">&gt;</tspan> <tspan fill="{t["muted"]}">whoami</tspan><tspan class="cur" fill="{t["accent"]}"> ▌</tspan></text></g>
-<g>
-  <text x="{x - 2}" y="130" font-size="42" font-weight="600" letter-spacing="-1.2" fill="{t["text"]}">Mohammad Sadegh</text>
-  <text x="{x - 2}" y="178" font-size="42" font-weight="600" letter-spacing="-1.2" fill="url(#name)">Taghizadeh</text>
-</g>
-<g><text x="{x}" y="214" font-size="17" fill="{t["muted"]}">Full-stack developer <tspan fill="{t["faint"]}">&amp;</tspan> graphic designer</text></g>
-<g>
+<g class="slide"{dly(0, .1)}><text x="{x}" y="76" class="mono" font-size="13" fill="{t["faint"]}">~/mim-sad <tspan fill="{t["accent"]}">&gt;</tspan> <tspan fill="{t["muted"]}">whoami</tspan><tspan class="cur" fill="{t["accent"]}"> ▌</tspan></text></g>
+<g class="slide"{dly(0, .22)}><text x="{x - 2}" y="130" font-size="42" font-weight="600" letter-spacing="-1.2" fill="{t["text"]}">Mohammad Sadegh</text></g>
+<g class="slide"{dly(0, .34)}><text x="{x - 2}" y="178" font-size="42" font-weight="600" letter-spacing="-1.2" fill="url(#name)">Taghizadeh</text></g>
+<g class="slide"{dly(0, .46)}><text x="{x}" y="214" font-size="17" fill="{t["muted"]}">Full-stack developer <tspan fill="{t["faint"]}">&amp;</tspan> graphic designer</text></g>
+<g class="pop"{dly(0, .62)}>
   <rect x="{x + .5}" y="236.5" width="{sw:.1f}" height="28" rx="14" fill="{t["chip"]}" stroke="{t["edge"]}"/>
   <circle class="ping" cx="{x + 17}" cy="250.5" r="3.5" fill="{t["accent"]}"/>
   <circle cx="{x + 17}" cy="250.5" r="3.5" fill="{t["accent"]}"/>
   <text x="{x + 30}" y="255" class="mono" font-size="12" fill="{t["muted"]}">{status}</text>
 </g>"""
-    return doc(w, h, body, "Mohammad Sadegh Taghizadeh — full-stack developer & graphic designer",
+    return doc(w, h, body, "Mohammad Sadegh Taghizadeh, full-stack developer and graphic designer",
                defs, fonts=("inter-400", "inter-600", "mono-400"))
 
 
@@ -557,7 +604,7 @@ def write(name: str, content: str) -> None:
 def build_static() -> None:
     for theme, t in THEMES.items():
         write(f"hero-{theme}.svg", hero(t, theme))
-        # both toolkit cards share one height so they line up side by side
+        # all toolkit cards share one height so the grid lines up
         h = max(toolkit_card(k, t)[1] for k in TOOLKIT)
         for k in TOOLKIT:
             write(f"toolkit-{k}-{theme}.svg", toolkit_card(k, t, h)[0])
