@@ -38,7 +38,7 @@ class RenderTests(unittest.TestCase):
         pc.build_static()
         pc.build_dynamic(pc.mock_data())
         files = list(pc.OUT.glob("*.svg"))
-        self.assertEqual(len(files), 2 * (3 + len(pc.CARDS)))
+        self.assertEqual(len(files), 2 * (1 + len(pc.TOOLKIT) + len(pc.CARDS)))
         for f in files:
             minidom.parse(str(f))
 

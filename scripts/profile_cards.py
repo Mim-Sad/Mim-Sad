@@ -421,15 +421,21 @@ def activity_card(d: dict, t: dict, span: int = 30) -> str:
 # toolkit
 # --------------------------------------------------------------------------
 TOOLKIT = {
-    "code": ("Toolkit · Code", [
-        ("Languages", ["Python", "JavaScript", "C#", "C++", "Java"]),
-        ("Web", ["React", "Node.js", "HTML5", "CSS3"]),
-        ("Data & AI", ["MongoDB", "Colab"]),
+    "languages": ("Languages", [
+        ("Core", ["Python", "TypeScript", "JavaScript", "Dart", "SQL"]),
+        ("Systems & enterprise", ["C#", "C++", "Java"]),
     ]),
-    "create": ("Toolkit · Create", [
+    "apps": ("Apps & Engines", [
+        ("Web & mobile", ["Flutter", "React", "Node.js", "HTML5", "CSS3"]),
         ("Game engines", ["Unity", "Unreal"]),
+    ]),
+    "ai": ("AI & Data", [
+        ("Machine intelligence", ["LLMs", "Agents", "RAG", "ML", "Deep Learning", "RL"]),
+        ("Data", ["SQLite", "MongoDB", "Colab"]),
+    ]),
+    "ops": ("Cloud & Design", [
+        ("Infrastructure", ["Cloud Computing", "DevOps", "Docker", "Git", "Linux"]),
         ("Design & motion", ["Photoshop", "Illustrator", "After Effects"]),
-        ("Everyday", ["Git", "Linux"]),
     ]),
 }
 
@@ -557,7 +563,7 @@ def write(name: str, content: str) -> None:
 def build_static() -> None:
     for theme, t in THEMES.items():
         write(f"hero-{theme}.svg", hero(t, theme))
-        # both toolkit cards share one height so they line up side by side
+        # all toolkit cards share one height so the grid lines up
         h = max(toolkit_card(k, t)[1] for k in TOOLKIT)
         for k in TOOLKIT:
             write(f"toolkit-{k}-{theme}.svg", toolkit_card(k, t, h)[0])
