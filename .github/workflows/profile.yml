@@ -1,0 +1,54 @@
+name: Update profile widgets
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/**", ".github/workflows/profile.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Test generator
+        run: python -m unittest discover -s tests -v
+
+      - name: Generate stat cards
+        env:
+          # Use a PAT with `read:user` in the PROFILE_TOKEN secret to include private contributions.
+          GITHUB_TOKEN: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
+          PROFILE_USER: ${{ github.repository_owner }}
+        run: python scripts/profile_cards.py
+
+      - name: Generate contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          github_token: ${{ secrets.PROFILE_TOKEN || secrets.GITHUB_TOKEN }}
+          outputs: |
+            assets/snake.svg?color_snake=#0d9488&color_dots=#ebedf0,#b8ecdf,#5fd3bb,#14a38c,#0b6e60
+            assets/snake-dark.svg?palette=github-dark&color_snake=#5eead4&color_dots=#161b22,#0f4a43,#13806f,#2fbfa3,#7ff0d6
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          git diff --cached --quiet || git commit -m "chore: refresh profile widgets"
+          git push
